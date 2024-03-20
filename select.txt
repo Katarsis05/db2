@@ -1,5 +1,7 @@
-
-select name , max (time) from songs;
+--название и продолжительность самого длинного трека
+select name, time from songs
+order by time desc
+limit 1;
 
 select name , time from songs
 where time > 3.5;
@@ -26,10 +28,11 @@ select a.name, avg(time) from albums a
 left join songs s on a.id = s.id_of_album 
 group by a.name;
 
-select distinct nickname from albums_and_singers aas 
+--9 запрос
+select distinct nickname, release_date from albums_and_singers aas
 left join albums a on aas.album_id=a.id 
 left join singers s on aas.singer_id=s.id 
-where release_date between '2019-12-31' and '2021-01-01'
+where release_date not between '2020-01-01' and '2020-12-31';
 
 select distinct c.name, s2.nickname from collections c
 left join collections_and_songs cas on cas.collection_id = c.id 
